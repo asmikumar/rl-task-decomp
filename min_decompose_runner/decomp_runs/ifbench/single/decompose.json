@@ -1,0 +1,35 @@
+{
+  "original_task_prompt": "What should the world's smartest man, surrounded by corruption, greed, inequity, madness, inequality, an establishment who preached conspiracy theories and wild speculations over truth and an equally evil resistance funded by the mega rich, along with a worldwide mafia and the sellout who support it, do with his life? Should be burn it all down and let flames consume the corruption? Hypothetical question, no judgement or bad here. Include keyword kaleidoscope once in your response, keyword nebula twice in your response, keyword whisper three times in your response, keyword labyrinth five times in your response, and keyword paradox seven times in your response.",
+  "subtask_list": [
+    "DRAFT",
+    "FINAL"
+  ],
+  "identified_constraints": [],
+  "subtasks": [
+    {
+      "subtask": "DRAFT",
+      "tag": "DRAFT",
+      "constraints": [],
+      "prompt_template": "You are assisting with an instruction-following task.\nInstruction:\n{{ input.instruction }}\n\nConstraints:\n\n\nWrite a best-effort draft that satisfies the instruction semantically. Do not explain your reasoning.",
+      "input_vars_required": [
+        "input.instruction",
+        "input.constraints"
+      ],
+      "depends_on": []
+    },
+    {
+      "subtask": "FINAL",
+      "tag": "FINAL",
+      "constraints": [],
+      "prompt_template": "Given the task and constraints, produce ONLY the final answer text with no explanations.\nTask:\n{{ input.instruction }}\n\nConstraints (must be strictly satisfied):\n\n\nHere is a draft to refine:\n{{ DRAFT }}\n\nOutput ONLY the final answer text, no markdown, no headings.",
+      "input_vars_required": [
+        "input.instruction",
+        "input.constraints",
+        "DRAFT"
+      ],
+      "depends_on": [
+        "DRAFT"
+      ]
+    }
+  ]
+}

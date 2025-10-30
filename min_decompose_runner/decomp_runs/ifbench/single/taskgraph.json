@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "name": "DRAFT",
+      "prompt_template": "You are assisting with an instruction-following task.\nInstruction:\n{{ input.instruction }}\n\nConstraints:\n\n\nWrite a best-effort draft that satisfies the instruction semantically. Do not explain your reasoning.",
+      "input_vars_required": [
+        "input.instruction",
+        "input.constraints"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "n2",
+      "name": "FINAL",
+      "prompt_template": "Given the task and constraints, produce ONLY the final answer text with no explanations.\nTask:\n{{ input.instruction }}\n\nConstraints (must be strictly satisfied):\n\n\nHere is a draft to refine:\n{{ DRAFT }}\n\nOutput ONLY the final answer text, no markdown, no headings.",
+      "input_vars_required": [
+        "input.instruction",
+        "input.constraints",
+        "DRAFT"
+      ],
+      "depends_on": [
+        "DRAFT"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "src": "n1",
+      "dst": "n2"
+    }
+  ]
+}

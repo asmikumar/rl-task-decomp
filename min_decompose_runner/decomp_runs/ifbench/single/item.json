@@ -1,0 +1,10 @@
+{
+  "id": "ifb_000000",
+  "instruction": "What should the world's smartest man, surrounded by corruption, greed, inequity, madness, inequality, an establishment who preached conspiracy theories and wild speculations over truth and an equally evil resistance funded by the mega rich, along with a worldwide mafia and the sellout who support it, do with his life? Should be burn it all down and let flames consume the corruption? Hypothetical question, no judgement or bad here. Include keyword kaleidoscope once in your response, keyword nebula twice in your response, keyword whisper three times in your response, keyword labyrinth five times in your response, and keyword paradox seven times in your response.",
+  "constraints": [],
+  "gold_check": null,
+  "eval_meta": {
+    "split": "train",
+    "source": "allenai/IFBench_test"
+  }
+}
