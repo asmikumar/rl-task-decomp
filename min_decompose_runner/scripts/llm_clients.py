@@ -4,6 +4,27 @@ import os, httpx, json
 MODEL_NAME = "llama3.1"
 BASE = os.environ.get("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
 
+import subprocess
+from textwrap import dedent
+
+def ollama_run(model: str, prompt: str) -> str:
+    """
+    Run the equivalent of:  echo "<prompt>" | ollama run <model>
+    and return the raw text response.
+    """
+    proc = subprocess.run(
+        ["ollama", "run", model],
+        input=prompt.encode("utf-8"),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"ollama run failed (code {proc.returncode}): {proc.stderr.decode('utf-8', 'ignore')}"
+        )
+    return proc.stdout.decode("utf-8", "ignore").strip()
+
+
 def _ensure_server_ok():
     r = httpx.get(f"{BASE}/api/tags", timeout=10)
     r.raise_for_status()

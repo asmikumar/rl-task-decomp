@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from tqdm import tqdm
 from datasets import load_dataset
 
-from .llm_clients import chat  # fixed llama3.1 via Ollama
+from .llm_clients import chat, ollama_run  # fixed llama3.1 via Ollama
 
 
 @dataclass
@@ -113,11 +113,12 @@ def main(argv: Optional[List[str]] = None):
             key, prompt = ex["key"], ex["prompt"]
 
             try:
-                raw = chat(
-                    [{"role": "user", "content": prompt}],
-                    temperature=args.temperature,
-                    top_p=args.top_p,
-                )
+                # raw = chat(
+                #     [{"role": "user", "content": prompt}],
+                #     temperature=args.temperature,
+                #     top_p=args.top_p,
+                # )
+                raw = ollama_run("llama3.1", prompt)
                 clean = _strip_reasoning(raw)
             except Exception as e:
                 raw = clean = f"<<ERROR: {e}>>"
